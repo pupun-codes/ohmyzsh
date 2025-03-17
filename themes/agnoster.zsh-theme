@@ -163,9 +163,11 @@ git_toplevel() {
 # Each component will draw itself, and hide itself if no information needs to be shown
 
 # Context: user@hostname (who am I and where am I)
+# Bhabani-edit: To revert back to username@hostname use `%n@%m`
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment "$AGNOSTER_CONTEXT_BG" "$AGNOSTER_CONTEXT_FG" "%(!.%{%F{$AGNOSTER_STATUS_ROOT_FG}%}.)%n@%m"
+    
+    prompt_segment "$AGNOSTER_CONTEXT_BG" "$AGNOSTER_CONTEXT_FG" "%(!.%{%F{$AGNOSTER_STATUS_ROOT_FG}%}.)bhabani@work" 
   fi
 }
 
@@ -308,7 +310,8 @@ prompt_dir() {
     # Git repo and inline path enabled, hence only show the git root
     prompt_segment "$AGNOSTER_DIR_BG" "$AGNOSTER_DIR_FG" "$(git_toplevel | sed "s:^$HOME:~:")"
   else
-    prompt_segment "$AGNOSTER_DIR_BG" "$AGNOSTER_DIR_FG" '%~'
+    # Bhabani edit: to change to show full path use <prompt_segment "$AGNOSTER_DIR_BG" "$AGNOSTER_DIR_FG" '%~'>
+    prompt_segment "$AGNOSTER_DIR_BG" "$AGNOSTER_DIR_FG" '%c'
   fi
 }
 
